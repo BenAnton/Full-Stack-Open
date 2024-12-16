@@ -1,0 +1,14 @@
+'''mermaid
+
+upon clicking Save: 
+new_note using POST user input to server at URL: https://studies.cs.helsinki.fi/exampleapp/new_note
+
+The server will then ask for a new HTTP redirect, the notes page is reloaded: 
+notes GET from https://studies.cs.helsinki.fi/exampleapp/notes
+
+This then causes three more HTTP requests:
+main.css GET from https://studies.cs.helsinki.fi/exampleapp/main.css
+main.js GET from https://studies.cs.helsinki.fi/exampleapp/main.js
+data.js GET from https://studies.cs.helsinki.fi/exampleapp/data.json
+
+'''
