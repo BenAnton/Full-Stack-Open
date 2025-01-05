@@ -68,7 +68,7 @@ const App = () => {
           .catch(() => {
             setNotifyStyle("error");
             setErrorMessage(
-              `${persons.name} was already deleted from the server`
+              `${existingPerson.name} was already deleted from the server`
             );
             setTimeout(() => {
               setErrorMessage(null);
