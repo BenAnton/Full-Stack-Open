@@ -65,11 +65,9 @@ const App = () => {
             setNewName("");
             setNewNumber("");
           })
-          .catch(() => {
+          .catch((error) => {
             setNotifyStyle("error");
-            setErrorMessage(
-              `${existingPerson.name} was already deleted from the server`
-            );
+            setErrorMessage(error.response?.data?.error || "An Error Occurred");
             setTimeout(() => {
               setErrorMessage(null);
             }, 3000);
@@ -79,16 +77,22 @@ const App = () => {
       // if not existing create new number
     } else {
       const newPerson = { name: newName, number: newNumber };
-      phonebookService.create(newPerson).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
-      setNotifyStyle("success");
-      setErrorMessage(`${newPerson.name} added successfully`);
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 3000);
+      phonebookService
+        .create(newPerson)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+          setNotifyStyle("success");
+          setErrorMessage(`${newPerson.name} added successfully`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log(error.response.data.error);
+          setErrorMessage(error.response.data.error);
+        });
     }
   };
 

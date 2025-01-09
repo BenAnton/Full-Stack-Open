@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
 const Persons = ({ contacts, deleteFunc }) => {
+  if (!Array.isArray(contacts)) {
+    console.log("Contacts received: ", contacts);
+  }
+
   return (
     <ul>
       {contacts.map((contact) => (
